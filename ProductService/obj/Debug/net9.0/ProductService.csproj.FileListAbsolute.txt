@@ -30,3 +30,4 @@ C:\dev\ShoppingMicroservices\ProductService\obj\Debug\net9.0\refint\ProductServi
 C:\dev\ShoppingMicroservices\ProductService\obj\Debug\net9.0\ProductService.pdb
 C:\dev\ShoppingMicroservices\ProductService\obj\Debug\net9.0\ProductService.genruntimeconfig.cache
 C:\dev\ShoppingMicroservices\ProductService\obj\Debug\net9.0\ref\ProductService.dll
+C:\dev\ShoppingMicroservices\ProductService\obj\Debug\net9.0\ProductService.sourcelink.json
