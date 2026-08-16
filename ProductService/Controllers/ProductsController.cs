@@ -18,4 +18,22 @@ public class ProductsController : ControllerBase
 
         return Ok(products);
     }
+
+    [HttpGet("{id}")]
+    public IActionResult GetProduct(int id)
+    {
+        var products = new List<Product>
+        {
+            new Product { Id = 1, Name = "Laptop", Price = 80000 },
+            new Product { Id = 2, Name = "Phone", Price = 40000 }
+        };
+
+        var product = products.FirstOrDefault(p => p.Id == id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(product);
+    }
 }
