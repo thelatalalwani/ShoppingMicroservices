@@ -1,0 +1,63 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Visual Studio / IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.sln.iml
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+*.nuspec
+project.lock.json
+
+# ASP.NET Core / local config
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+launchSettings.json
+
+# Publish output
+publish/
+*.Publish.xml
+
+# Test / coverage
+TestResults/
+coverage*/
+*.coverage
+*.coveragexml
+*.trx
+
+# Logs / temp files
+*.log
+*.tmp
+*.bak
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local databases
+*.db
+*.db-shm
+*.db-wal
