@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ProductService.Models;
+using ProductService.Data;
 
 namespace ProductService.Controllers;
 
@@ -7,28 +7,24 @@ namespace ProductService.Controllers;
 [Route("api/[controller]")]
 public class ProductsController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult GetProducts()
-    {
-        var products = new List<Product>
-        {
-            new Product { Id = 1, Name = "Laptop", Price = 80000 },
-            new Product { Id = 2, Name = "Phone", Price = 40000 }
-        };
+    private readonly ProductRepository _productRepository;
 
+    public ProductsController(ProductRepository productRepository)
+    {
+        _productRepository = productRepository;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetProducts()
+    {
+        var products = await _productRepository.GetAllAsync();
         return Ok(products);
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetProduct(int id)
+    public async Task<IActionResult> GetProduct(int id)
     {
-        var products = new List<Product>
-        {
-            new Product { Id = 1, Name = "Laptop", Price = 80000 },
-            new Product { Id = 2, Name = "Phone", Price = 40000 }
-        };
-
-        var product = products.FirstOrDefault(p => p.Id == id);
+        var product = await _productRepository.GetByIdAsync(id);
         if (product == null)
         {
             return NotFound();

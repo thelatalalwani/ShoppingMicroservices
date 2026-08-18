@@ -1,7 +1,10 @@
+using OrderService.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<OrderRepository>();
 
 var app = builder.Build();
 

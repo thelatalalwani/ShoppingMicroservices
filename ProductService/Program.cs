@@ -1,6 +1,9 @@
+using ProductService.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ProductRepository>();
 
 var app = builder.Build();
 
