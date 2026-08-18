@@ -1,6 +1,7 @@
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 using OrderService.Data;
+using OrderService.Messaging;
 using OrderService.Models;
 
 namespace OrderService.Controllers;
@@ -11,11 +12,16 @@ public class OrdersController : ControllerBase
 {
     private readonly HttpClient _httpClient;
     private readonly OrderRepository _orderRepository;
+    private readonly RabbitMqPublisher _rabbitMqPublisher;
 
-    public OrdersController(HttpClient httpClient, OrderRepository orderRepository)
+    public OrdersController(
+        HttpClient httpClient,
+        OrderRepository orderRepository,
+        RabbitMqPublisher rabbitMqPublisher)
     {
         _httpClient = httpClient;
         _orderRepository = orderRepository;
+        _rabbitMqPublisher = rabbitMqPublisher;
     }
 
     [HttpPost]
@@ -31,6 +37,13 @@ public class OrdersController : ControllerBase
 
         order.TotalAmount = product.Price * order.Quantity;
         order.Id = await _orderRepository.CreateAsync(order);
+
+        await _rabbitMqPublisher.PublishOrderCreatedAsync(new
+        {
+            OrderId = order.Id,
+            ProductId = order.ProductId,
+            TotalAmount = order.TotalAmount
+        });
 
         return Ok(new
         {

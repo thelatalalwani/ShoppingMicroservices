@@ -1,10 +1,12 @@
 using OrderService.Data;
+using OrderService.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<RabbitMqPublisher>();
 
 var app = builder.Build();
 
