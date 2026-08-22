@@ -13,7 +13,7 @@ public class OrderCreatedConsumer : BackgroundService
     {
         var factory = new ConnectionFactory
         {
-            HostName = "localhost"
+            HostName = "rabbitmq"
         };
 
         _connection = await factory.CreateConnectionAsync();

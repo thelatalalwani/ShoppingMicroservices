@@ -14,3 +14,18 @@ services:
       - "5032:8080"
     depends_on:
       - product-service
+      - rabbitmq
+
+  notification-service:
+    build:
+      context: ./NotificationService
+    container_name: notification-container
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq-container
+    ports:
+      - "5672:5672"
+      - "15672:15672"
