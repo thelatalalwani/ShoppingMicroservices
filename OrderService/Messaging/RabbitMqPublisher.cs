@@ -10,7 +10,7 @@ public class RabbitMqPublisher
     {
         var factory = new ConnectionFactory
         {
-            HostName = "localhost"
+            HostName = "host.docker.internal"
         };
 
         await using var connection = await factory.CreateConnectionAsync();
