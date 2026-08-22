@@ -28,7 +28,7 @@ public class OrdersController : ControllerBase
     public async Task<IActionResult> CreateOrder(Order order)
     {
         var product = await _httpClient.GetFromJsonAsync<ProductDto>(
-            $"http://product-container:8080/api/products/{order.ProductId}");
+            $"http://product-service:8080/api/products/{order.ProductId}");
 
         if (product == null)
         {

@@ -1,0 +1,16 @@
+services:
+  product-service:
+    build:
+      context: ./ProductService
+    container_name: product-container
+    ports:
+      - "5166:8080"
+
+  order-service:
+    build:
+      context: ./OrderService
+    container_name: order-container
+    ports:
+      - "5032:8080"
+    depends_on:
+      - product-service
