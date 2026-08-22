@@ -23,6 +23,16 @@ services:
     depends_on:
       - rabbitmq
 
+  api-gateway:
+    build:
+      context: ./ApiGateway
+    container_name: api-gateway-container
+    ports:
+      - "5142:8080"
+    depends_on:
+      - product-service
+      - order-service
+
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq-container
